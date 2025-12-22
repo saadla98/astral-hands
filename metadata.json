@@ -1,0 +1,8 @@
+
+{
+  "name": "Celestial Particle Hands",
+  "description": "An interactive 3D particle system controlled by AI-powered hand gesture recognition. Switch between celestial shapes and control particle expansion using the Gemini Vision API.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}

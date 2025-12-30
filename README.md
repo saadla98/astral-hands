@@ -39,8 +39,8 @@ This project demonstrates the power of integrating **Multimodal AI** with **Reac
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/celestial-particle-hands.git
-    cd celestial-particle-hands
+    git clone https://github.com/saadla98/astral-hands.git
+    cd astral-hands
     ```
 
 2.  **Install dependencies:**
@@ -87,4 +87,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-Built with ❤️ by [Your Name]
+Built with ❤️ by SAAD LAMAIZI

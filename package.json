@@ -1,5 +1,6 @@
 {
-  "name": "celestial-particle-hands",
+  "name": "astral-hands",
+  "description": "Transform your hand gestures into mesmerizing 3D celestial particle systems using AI and Three.js.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

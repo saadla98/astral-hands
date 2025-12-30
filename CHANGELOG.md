@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2025-12-30
+
+### 🔧 Fixed
+- **CI/CD**: Fixed GitHub Actions permissions and workflow configurations.
+- **Dependencies**: Synced package-lock.json.
+
 ## [1.0.0] - 2025-12-30
 
 ### 🚀 Launched

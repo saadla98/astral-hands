@@ -1,8 +1,12 @@
 {
   "name": "astral-hands",
+  "version": "1.0.0",
   "description": "Transform your hand gestures into mesmerizing 3D celestial particle systems using AI and Three.js.",
-  "private": true,
-  "version": "0.0.0",
+  "author": "SAAD LAMAIZI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saadla98/astral-hands.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

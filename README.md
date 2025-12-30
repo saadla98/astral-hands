@@ -1,233 +1,90 @@
-<div align="center">
+# Celestial Particle Hands 🌌✋
 
-# 🌌 Celestial Particle Hands
+An interactive, AI-powered hand tracking experience that transforms your gestures into mesmerizing 3D celestial particle systems in real-time.
 
-### *AI-Powered Hand Gesture Particle System*
+![Project Banner](https://images.unsplash.com/photo-1534239143101-1b1c627395c5?q=80&w=2574&auto=format&fit=crop)
 
-<p align="center">
-  <img src="https://img.shields.io/badge/React-19.2.3-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React"/>
-  <img src="https://img.shields.io/badge/Three.js-0.182.0-000000?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/>
-  <img src="https://img.shields.io/badge/TypeScript-5.8.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/Gemini_AI-8E75B2?style=for-the-badge&logo=google&logoColor=white" alt="Gemini AI"/>
-  <img src="https://img.shields.io/badge/Vite-6.2.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"/>
-</p>
+## ✨ Overview
 
-<p align="center">
-  <strong>Transform your hand gestures into mesmerizing 3D particle formations powered by Google's Gemini AI</strong>
-</p>
+**Celestial Particle Hands** fuses computer vision, generative AI, and 3D graphics to create a magical interactive display. By using your webcam, the application captures your hand gestures and uses Google's Gemini AI to analyze them. Each gesture is then mapped to a unique, dynamic 3D particle formation (like a heart, a planet, or a galaxy) with specific colors and behaviors.
 
-</div>
+This project demonstrates the power of integrating **Multimodal AI** with **Reactive 3D Web Graphics**.
 
----
+## 🚀 Features
 
-## ✨ Features
-
-🎨 **Real-time Gesture Recognition** - Powered by Google Gemini AI to detect hand gestures with precision  
-🌟 **Dynamic Particle Systems** - 8+ unique particle formations (sphere, heart, flower, saturn, fireworks, spiral, star, wave)  
-🎭 **Gesture-to-Shape Mapping** - Each hand gesture triggers a unique visual experience  
-💫 **Bloom Effects** - Professional-grade post-processing with bloom and glow effects  
-🎨 **Adaptive Colors** - AI-generated vibrant colors that match detected gestures  
-📹 **Live Camera Feed** - Real-time hand tracking through your webcam  
-⚡ **Smooth Animations** - Fluid particle transformations using React Three Fiber  
-🎯 **Demo Mode** - Test without API limits using pre-programmed gesture sequences  
-
----
-
-## 🎮 Gesture Controls
-
-| Gesture | Shape | Description |
-|---------|-------|-------------|
-| ✌️ **Peace** | Flower | Two fingers up creates a blooming flower pattern |
-| ☝️ **One** | Heart | Single finger forms a romantic heart shape |
-| ✊ **Fist** | Saturn | Closed fist generates planetary rings |
-| ✋ **Palm** | Sphere | Open palm creates a perfect particle sphere |
-| 👍 **Thumbs Up** | Fireworks | Thumbs up triggers explosive firework particles |
-| 🤘 **Rock** | Spiral | Rock sign generates a mesmerizing spiral |
-| 👌 **Okay** | Star | OK gesture forms a brilliant star |
-| 👇 **Point Down** | Wave | Pointing down creates flowing wave patterns |
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- **Node.js** (v16 or higher)
-- **Gemini API Key** ([Get one free here](https://aistudio.google.com/apikey))
-- **Webcam** (for real-time gesture detection)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/celestial-particle-hands.git
-
-# Navigate to project directory
-cd celestial-particle-hands
-
-# Install dependencies
-npm install
-```
-
-### Configuration
-
-1. Create a `.env.local` file in the root directory:
-   ```env
-   GEMINI_API_KEY=your_api_key_here
-   ```
-
-2. Replace `your_api_key_here` with your actual Gemini API key
-
-### Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser
-
----
-
-## 🏗️ Build for Production
-
-```bash
-# Create optimized production build
-npm run build
-
-# Preview production build locally
-npm run preview
-```
-
----
+-   **Real-time Gesture Recognition:** Uses Google Gemini 1.5 Flash/Pro to interpret hand gestures from video frames.
+-   **Dynamic 3D Particles:** Thousands of particles react and reform into shapes based on the detected gesture.
+-   **Interactive Visuals:**
+    -   ✌️ **Peace Sign:** Blooms into a pink Flower.
+    -   ☝️ **One Finger:** Forms a beating Heart.
+    -   ✊ **Fist:** Condenses into a Saturn-like planet with rings.
+    -   ✋ **Open Palm:** Relaxes into a floating Sphere.
+    -   👍 **Thumbs Up:** Explodes into Fireworks.
+    -   🤘 **Rock/Metal:** Spirals into a Galaxy.
+    -   👌 **Okay Sign:** Forms a Star.
+    -   👇 **Point Down:** Creates a Wave effect.
+-   **Modern UI:** A sleek, glassmorphism-inspired interface with animated indicators.
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework:** React 19.2.3
-- **3D Graphics:** Three.js 0.182.0 + React Three Fiber 9.4.2
-- **AI Engine:** Google Generative AI (Gemini) 1.34.0
-- **Post-Processing:** @react-three/postprocessing 3.0.4
-- **Language:** TypeScript 5.8.2
-- **Build Tool:** Vite 6.2.0
-- **Icons:** Lucide React 0.562.0
+-   **Frontend Framework:** [React 19](https://react.dev/)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **3D Graphics:** [Three.js](https://threejs.org/) & [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber)
+-   **AI Model:** [Google Gemini API](https://ai.google.dev/) (@google/genai)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **Icons:** [Lucide React](https://lucide.dev/)
 
----
+## 📦 Installation & Setup
 
-## 📁 Project Structure
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/celestial-particle-hands.git
+    cd celestial-particle-hands
+    ```
 
-```
-celestial-particle-hands/
-├── App.tsx                 # Main application component
-├── GestureEngine.ts        # AI gesture detection logic
-├── ParticleSystem.tsx      # 3D particle rendering system
-├── types.ts                # TypeScript type definitions
-├── index.tsx               # Application entry point
-├── vite.config.ts          # Vite configuration
-├── tsconfig.json           # TypeScript configuration
-├── .env.local              # Environment variables (create this)
-└── package.json            # Project dependencies
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
----
+3.  **Configure Environment:**
+    Create a `.env` file in the root directory and add your Google Gemini API key:
+    ```env
+    VITE_GEMINI_API_KEY=your_api_key_here
+    ```
+    > You can get an API key from [Google AI Studio](https://aistudio.google.com/).
 
-## ⚙️ Configuration Options
+4.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-### Demo Mode
+5.  **Open in Browser:**
+    Navigate to `http://localhost:5173` (or the URL shown in the terminal).
 
-To enable demo mode (useful when API quota is exceeded):
+## 🎮 How to Use
 
-```typescript
-// In GestureEngine.ts
-const DEMO_MODE = true;  // Set to true for demo mode
-```
-
-Demo mode cycles through all gesture shapes automatically every 4 seconds.
-
-### Capture Interval
-
-Adjust gesture detection frequency in `App.tsx`:
-
-```typescript
-// Change interval time (in milliseconds)
-interval = window.setInterval(async () => {
-  // ...
-}, 4000);  // 4 seconds (adjust as needed)
-```
-
----
-
-## 🎯 How It Works
-
-1. **Camera Capture** - The app accesses your webcam and captures frames
-2. **AI Analysis** - Each frame is sent to Gemini AI for gesture recognition
-3. **Gesture Detection** - AI identifies the hand gesture and calculates expansion factor
-4. **Shape Mapping** - Detected gesture maps to a specific particle shape
-5. **Particle Rendering** - Three.js renders thousands of particles in the mapped formation
-6. **Color Generation** - AI suggests vibrant colors matching the gesture
-7. **Post-Processing** - Bloom effects add magical glow to particles
-
----
-
-## 🐛 Troubleshooting
-
-### Issue: "Camera access denied"
-**Solution:** Enable camera permissions in your browser settings
-
-### Issue: "429 Too Many Requests"
-**Solution:** You've exceeded the API rate limit. Enable demo mode or wait 24 hours
-
-### Issue: "RESOURCE_EXHAUSTED"
-**Solution:** Free tier quota exceeded. Enable demo mode or upgrade to paid tier
-
-### Issue: Port 3000 already in use
-**Solution:** Vite will automatically use port 3001. Check terminal output for the correct URL
-
----
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
----
+1.  Allow camera access when prompted.
+2.  Stand in a well-lit area.
+3.  Show different hand gestures to the camera.
+4.  Watch the particles transform!
+    *   *Note: The AI analyzes frames every few seconds to optimize performance and API usage.*
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1.  Fork the project
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
 
----
+## 📄 License
 
-## 🌟 Show Your Support
-
-Give a ⭐️ if this project helped or inspired you!
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-## 👨‍💻 Author
-
-**Your Name**
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Twitter: [@yourhandle](https://twitter.com/yourhandle)
-
----
-
-## 🙏 Acknowledgments
-
-- Google Gemini AI for powerful gesture recognition
-- Three.js community for amazing 3D graphics capabilities
-- React Three Fiber for seamless React integration
-
----
-
-<div align="center">
-
-**Made with ❤️ and lots of ✨**
-
-[⬆ Back to Top](#-celestial-particle-hands)
-
-</div>
+Built with ❤️ by [Your Name]

@@ -5,7 +5,18 @@ import { Bloom, EffectComposer } from '@react-three/postprocessing';
 import { ParticleSystem } from './ParticleSystem';
 import { GestureState } from './types';
 import { detectGesture } from './GestureEngine';
-import { Camera, RefreshCw, Hand, Info, Sparkles } from 'lucide-react';
+import { Camera, RefreshCw, Hand, Info, Sparkles, HelpCircle, X, Github } from 'lucide-react';
+
+const GESTURE_GUIDE = [
+  { name: 'Peace', icon: '✌️', desc: 'Blooms into a Flower' },
+  { name: 'One Finger', icon: '☝️', desc: 'Forms a beating Heart' },
+  { name: 'Fist', icon: '✊', desc: 'Saturn with rings' },
+  { name: 'Open Palm', icon: '✋', desc: 'Floating Sphere' },
+  { name: 'Thumbs Up', icon: '👍', desc: 'Fireworks explosion' },
+  { name: 'Rock On', icon: '🤘', desc: 'Galaxy Spiral' },
+  { name: 'Okay', icon: '👌', desc: 'Shining Star' },
+  { name: 'Point Down', icon: '👇', desc: 'Ocean Wave' },
+];
 
 const App: React.FC = () => {
   const [gestureState, setGestureState] = useState<GestureState>({
@@ -15,6 +26,7 @@ const App: React.FC = () => {
     shape: 'sphere'
   });
   const [isCapturing, setIsCapturing] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -60,7 +72,11 @@ const App: React.FC = () => {
   }, [isCapturing]);
 
   return (
-    <div className="relative w-full h-screen bg-black text-white overflow-hidden">
+    <div className="relative w-full h-screen bg-[#020205] text-white overflow-hidden font-sans selection:bg-purple-500/30">
+      {/* Hidden Video/Canvas for processing */}
+      <video ref={videoRef} autoPlay playsInline muted className="hidden" />
+      <canvas ref={canvasRef} className="hidden" />
+
       {/* 3D Scene */}
       <div className="absolute inset-0 z-0">
         <Canvas camera={{ position: [0, 0, 10], fov: 60 }}>
@@ -74,80 +90,92 @@ const App: React.FC = () => {
         </Canvas>
       </div>
 
-      {/* UI Overlay */}
-      <div className="absolute top-0 left-0 p-8 z-10 pointer-events-none w-full flex justify-between">
-        <div>
-          <h1 className="text-4xl font-extrabold tracking-tighter flex items-center gap-2">
-            <Sparkles className="text-purple-400" /> COSMIC <span className="text-purple-400">GESTURES</span>
+      {/* Header UI */}
+      <div className="absolute top-0 left-0 w-full p-6 z-10 flex justify-between items-start pointer-events-none">
+        <div className="pointer-events-auto">
+          <h1 className="text-5xl font-black tracking-tighter flex items-center gap-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-purple-400 drop-shadow-lg">
+            <Sparkles className="text-purple-400 w-10 h-10" />
+            COSMIC HANDS
           </h1>
-          <p className="text-gray-400 mt-2 max-w-xs text-sm uppercase tracking-widest font-semibold">
-            Interactive AI-Powered Hand Tracking Experience
+          <p className="text-purple-200/60 mt-2 text-sm uppercase tracking-[0.2em] font-medium ml-1">
+            Interactive AI Particle Experience
           </p>
         </div>
 
-        <div className="bg-black/40 backdrop-blur-md border border-white/10 p-4 rounded-xl pointer-events-auto flex flex-col gap-3">
-          <div className="flex items-center gap-3">
-            <div className={`w-3 h-3 rounded-full ${isCapturing ? 'bg-yellow-400 animate-pulse' : 'bg-green-500'}`} />
-            <span className="text-xs font-mono uppercase tracking-wider">
-              {isCapturing ? 'AI Analyzing...' : 'System Active'}
-            </span>
-          </div>
-          <div className="space-y-1">
-            <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Detected Gesture</p>
-            <p className="text-xl font-bold text-cyan-400 capitalize">{gestureState.gesture}</p>
+        <div className="flex flex-col items-end gap-4 pointer-events-auto">
+          <button 
+            onClick={() => setShowHelp(true)}
+            className="group flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95"
+          >
+            <HelpCircle className="w-5 h-5 text-purple-300 group-hover:text-white transition-colors" />
+            <span className="text-sm font-medium text-purple-200 group-hover:text-white">Gesture Guide</span>
+          </button>
+
+          <div className="bg-black/40 backdrop-blur-xl border border-white/10 p-5 rounded-2xl flex flex-col gap-4 shadow-2xl min-w-[200px]">
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className={`w-3 h-3 rounded-full ${isCapturing ? 'bg-yellow-400' : 'bg-green-500'} transition-colors duration-300`} />
+                {isCapturing && <div className="absolute inset-0 w-3 h-3 rounded-full bg-yellow-400 animate-ping opacity-75" />}
+              </div>
+              <span className="text-xs font-mono uppercase tracking-wider text-gray-300">
+                {isCapturing ? 'AI Analyzing...' : 'System Ready'}
+              </span>
+            </div>
+            
+            <div className="space-y-1 pt-2 border-t border-white/5">
+              <p className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Current Gesture</p>
+              <div className="flex items-center gap-2">
+                <p className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 capitalize">
+                  {gestureState.gesture}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Camera Preview */}
-      <div className="absolute bottom-8 right-8 z-20">
-        <div className="relative group">
-          <video 
-            ref={videoRef} 
-            autoPlay 
-            muted 
-            playsInline 
-            className="w-48 h-36 rounded-lg border-2 border-white/20 object-cover grayscale brightness-75 hover:grayscale-0 transition-all duration-500"
-          />
-          <div className="absolute inset-0 rounded-lg border border-white/10 pointer-events-none group-hover:border-cyan-400/50 transition-colors" />
-          <div className="absolute bottom-2 left-2 px-2 py-0.5 bg-black/60 rounded text-[10px] uppercase font-bold tracking-widest flex items-center gap-1">
-            <Camera size={10} /> Live Feed
-          </div>
-        </div>
-        <canvas ref={canvasRef} className="hidden" />
-      </div>
+      {/* Help Modal */}
+      {showHelp && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
+          <div className="bg-[#0a0a10]/90 border border-purple-500/20 rounded-3xl p-8 max-w-4xl w-full shadow-2xl relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl" />
 
-      {/* Legend */}
-      <div className="absolute bottom-8 left-8 z-20 flex gap-4">
-        {[
-          { label: 'Peace', shape: 'Flower', icon: '✌️' },
-          { label: 'One', shape: 'Heart', icon: '☝️' },
-          { label: 'Fist', shape: 'Saturn', icon: '✊' },
-          { label: 'Palm', shape: 'Sphere', icon: '🖐️' },
-          { label: 'Thumb', shape: 'Fireworks', icon: '👍' },
-          { label: 'Rock', shape: 'Spiral', icon: '🤘' },
-          { label: 'Point Down', shape: 'Wave', icon: '👇' },
-          { label: 'Okay', shape: 'Star', icon: '👌' },
-        ].map((item) => (
-          <div key={item.label} className={`flex flex-col items-center p-3 rounded-xl border border-white/5 bg-white/5 backdrop-blur-sm transition-all duration-300 ${gestureState.gesture === item.label.toLowerCase().replace(/ /g, '_') ? 'border-cyan-400 scale-110 bg-cyan-400/10' : 'opacity-60'}`}>
-            <span className="text-xl mb-1">{item.icon}</span>
-            <span className="text-[9px] uppercase font-bold tracking-tighter text-gray-300">{item.shape}</span>
-          </div>
-        ))}
-      </div>
-
-      {error && (
-        <div className="absolute inset-0 flex items-center justify-center z-50 bg-black/80 backdrop-blur-sm">
-          <div className="bg-red-900/20 border border-red-500/50 p-6 rounded-2xl max-w-sm text-center">
-            <h2 className="text-xl font-bold text-red-400 mb-2">Access Error</h2>
-            <p className="text-gray-300 text-sm mb-4">{error}</p>
             <button 
-              onClick={() => window.location.reload()}
-              className="px-4 py-2 bg-red-500 hover:bg-red-400 text-white rounded-lg font-bold text-sm flex items-center gap-2 mx-auto transition-colors"
+              onClick={() => setShowHelp(false)}
+              className="absolute top-6 right-6 p-2 rounded-full hover:bg-white/10 transition-colors"
             >
-              <RefreshCw size={16} /> Retry Access
+              <X className="w-6 h-6 text-gray-400 hover:text-white" />
             </button>
+
+            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
+              <Hand className="text-purple-400" />
+              <span>Gesture Guide</span>
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {GESTURE_GUIDE.map((g) => (
+                <div key={g.name} className="bg-white/5 border border-white/5 rounded-xl p-4 hover:bg-white/10 transition-all hover:scale-105 hover:border-purple-500/30 group">
+                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">{g.icon}</div>
+                  <h3 className="font-bold text-lg text-purple-200 mb-1">{g.name}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed">{g.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 text-center text-sm text-gray-500 border-t border-white/5 pt-6">
+              <p>Show these gestures to your camera to control the particles.</p>
+            </div>
           </div>
+        </div>
+      )}
+
+      {/* Error Message */}
+      {error && (
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-red-500/10 border border-red-500/20 text-red-200 px-6 py-3 rounded-full backdrop-blur-md flex items-center gap-3">
+          <Info className="w-5 h-5" />
+          {error}
         </div>
       )}
     </div>

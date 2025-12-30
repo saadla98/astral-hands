@@ -2,7 +2,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { GestureState } from "./types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 // Demo mode - cycles through gestures when API quota is exceeded
 const DEMO_MODE = false;
